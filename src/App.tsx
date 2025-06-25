@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import './App.css';
 import profileImg from './assets/profile.jpg';
+import profileImg1 from './assets/profile1.jpg';
+import profileImg2 from './assets/profile2.jpg';
 import resume from './assets/Resume-Abhay.pdf';
 import { Toaster, toast } from 'react-hot-toast';
 
@@ -144,7 +146,7 @@ function App() {
                 {/* Centered Foreground Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
                     <motion.img
-                        src={profileImg}
+                        src={profileImg2}
                         alt="Abhay"
                         className="w-40 h-40 rounded-full mb-4 border-4 border-white shadow-2xl hover:scale-110 transition-transform duration-500 animate__animated animate__zoomIn"
                         initial={{ scale: 0 }}
