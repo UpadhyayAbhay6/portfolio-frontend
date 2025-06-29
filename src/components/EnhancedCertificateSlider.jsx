@@ -106,22 +106,6 @@ useEffect(() => {
       thumbnail: '/certificates/genai_thumb.jpg',
       full: '/certificates/genai_full.jpg'
     },
-       {
-      id: 3,
-      title: "Web Development Bootcamp",
-      issuer: "Udemy",
-      category: "DEVELOPMENT",
-     thumbnail: '/certificates/web_dev_thumb.jpg',
-    full: '/certificates/web_dev_full.jpg'
-    },
-    {
-      id: 4,
-      title: "GenAI Powered Data Analytics Job Simulation Certificate",
-      issuer: "TATA (Forage)",
-      category: "GenAI Powered Data Analytics",
-      thumbnail: '/certificates/genai_thumb.jpg',
-      full: '/certificates/genai_full.jpg'
-    },
     
   ];
   useEffect(() => {
