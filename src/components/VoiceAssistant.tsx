@@ -16,17 +16,7 @@ interface Props {
 const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, resume }) => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(() => {
-        console.log("Microphone permission granted");
-        SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-      })
-      .catch((err) => {
-        console.error("Microphone permission denied or not granted:", err);
-      });
-  }, []);
-
+  // Voice commands logic
   useEffect(() => {
     const text = transcript.toLowerCase();
 
@@ -92,6 +82,17 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
     }
   }, [transcript, resetTranscript, setFormData, handleSubmit, resume]);
 
+  // 🔴 Avoid using auto-start mic due to browser restrictions.
+  const handleMicClick = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((track) => track.stop()); // Close stream after permission check
+      SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+    } catch (error) {
+      console.error("Microphone access denied or blocked.", error);
+    }
+  };
+
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return <p className="text-red-500 text-center">Browser does not support voice recognition.</p>;
   }
@@ -100,10 +101,7 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
     <div className="fixed bottom-4 right-4 z-50 text-center">
       <div className="text-5xl animate-bounce mb-1">👇🏻</div>
       <button
-        onClick={() => {
-          console.log("Manual mic button clicked, starting mic again if needed.");
-          SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-        }}
+        onClick={handleMicClick}
         className="p-4 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700"
       >
         🎤
