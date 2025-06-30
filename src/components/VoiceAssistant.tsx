@@ -10,28 +10,22 @@ interface Props {
   };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
   handleSubmit: (e: React.FormEvent<HTMLFormElement> | { preventDefault: () => void }) => void;
-  resume: string; // ✅ new prop
+  resume: string;
 }
 
 const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, resume }) => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
-  // 🔄 Auto ask for mic permission on load
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(() => {
         console.log("Microphone permission granted");
+        SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
       })
       .catch((err) => {
         console.error("Microphone permission denied or not granted:", err);
       });
   }, []);
-
-  const handleStart = () => {
-    if (!listening) {
-      SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-    }
-  };
 
   useEffect(() => {
     const text = transcript.toLowerCase();
@@ -87,7 +81,6 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
       resetTranscript();
     }
 
-    // ✅ Download Resume
     if (text.includes("download resume")) {
       const link = document.createElement("a");
       link.href = resume;
@@ -105,17 +98,19 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
 
   return (
     <div className="fixed bottom-4 right-4 z-50 text-center">
-      {/* Animated pointing emoji above mic */}
       <div className="text-5xl animate-bounce mb-1">👇🏻</div>
-
       <button
-        onClick={handleStart}
+        onClick={() => {
+          console.log("Manual mic button clicked, starting mic again if needed.");
+          SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
+        }}
         className="p-4 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700"
       >
         🎤
       </button>
-
-      {listening && <p className="text-sm text-green-600 mt-1">Listening...</p>}
+      <p className="text-sm mt-1 font-medium text-gray-800">
+        {listening ? <span className="text-green-600">Listening...</span> : <span className="text-red-500">Not Listening</span>}
+      </p>
     </div>
   );
 };
