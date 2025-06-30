@@ -16,6 +16,17 @@ interface Props {
 const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, resume }) => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
+  // 🔄 Auto ask for mic permission on load
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(() => {
+        console.log("Microphone permission granted");
+      })
+      .catch((err) => {
+        console.error("Microphone permission denied or not granted:", err);
+      });
+  }, []);
+
   const handleStart = () => {
     if (!listening) {
       SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
