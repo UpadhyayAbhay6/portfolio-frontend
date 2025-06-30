@@ -9,6 +9,8 @@ import CertificateModal from './components/CertificateModal';
     import profileImg2 from './assets/profile2.jpg';
     import resume from './assets/CV_Abhay.pdf';
     import { Toaster, toast } from 'react-hot-toast';
+    import VoiceAssistant from './components/VoiceAssistant';
+    import VoiceTipsModal from './components/VoiceTipsModal';
 
 const CustomToast = ({ message }: { message: string }) => {
   const controls = useAnimation();
@@ -38,9 +40,6 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
-  const sliderRef = useRef<HTMLDivElement | null>(null);
-
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -49,10 +48,11 @@ function App() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent | { preventDefault: () => void }) => {
     e.preventDefault();
     setIsSending(true);
     try {
@@ -78,7 +78,7 @@ function App() {
     setIsSending(false);
   };
 
-
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sliderRef.current) {
@@ -91,6 +91,7 @@ function App() {
       });
     }
   }, [currentIndex]);
+
 
         return (
             <div className="App font-sans">
@@ -389,6 +390,13 @@ function App() {
 
                     </motion.div>
                 </section>
+                 <VoiceAssistant
+        formData={formData}
+        setFormData={setFormData}
+        handleSubmit={handleSubmit}
+        resume={resume}
+      />
+      <VoiceTipsModal />  
             </div>
         );
     }
