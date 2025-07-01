@@ -38,6 +38,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedCert, setSelectedCert] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -95,43 +96,54 @@ function App() {
 
         return (
             <div className="App font-sans">
-                <nav className="sticky top-0 bg-gradient-to-r from-purple-900 via-blue-800 to-black text-white p-4 z-50 shadow-md animate__animated animate__fadeInDown">
+              <nav className="sticky top-0 bg-gradient-to-r from-purple-900 via-blue-800 to-black text-white p-4 z-50 shadow-md animate__animated animate__fadeInDown">
   <div className="flex items-center justify-between max-w-7xl mx-auto">
     
-    {/* Logo / Name */}
     <div className="text-2xl font-bold">Abhay</div>
 
-    {/* Desktop Nav Links */}
     <div className="hidden md:flex gap-6">
       <a href="#profile" className="hover:text-pink-400">My Profile</a>
       <a href="#about" className="hover:text-yellow-300">About Me</a>
       <a href="#experience" className="hover:text-green-300">Experience</a>
-      <a href="#certifications" className="hover:text-purple-300">Certificates</a>
+      <a href="#certifications" className="hover:text-purple-300">Achivements</a>
       <a href="#contact" className="hover:text-blue-300">Contact Me</a>
       <a href={resume} download className="text-cyan-300 hover:text-cyan-100">Download Resume</a>
     </div>
 
-    {/* Mobile Hamburger Icon */}
     <div className="md:hidden">
-      <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="focus:outline-none">
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button onClick={() => setIsMobileMenuOpen((prev) => !prev)} className="focus:outline-none transition-transform duration-300">
+        <motion.svg
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          initial={false}
+          animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        </motion.svg>
       </button>
     </div>
   </div>
 
-  {/* Mobile Menu Dropdown */}
-  {isMobileMenuOpen && (
-    <div className="md:hidden flex flex-col gap-4 mt-4 px-2 animate__animated animate__fadeInDown">
-      <a href="#profile" className="hover:text-pink-400" onClick={() => setIsMobileMenuOpen(false)}>My Profile</a>
-      <a href="#about" className="hover:text-yellow-300" onClick={() => setIsMobileMenuOpen(false)}>About Me</a>
-      <a href="#experience" className="hover:text-green-300" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
-      <a href="#certifications" className="hover:text-purple-300" onClick={() => setIsMobileMenuOpen(false)}>Certificates</a>
-      <a href="#contact" className="hover:text-blue-300" onClick={() => setIsMobileMenuOpen(false)}>Contact Me</a>
-      <a href={resume} download className="text-cyan-300 hover:text-cyan-100" onClick={() => setIsMobileMenuOpen(false)}>Download Resume</a>
-    </div>
-  )}
+  <motion.div
+    initial={false}
+    animate={{
+      height: isMobileMenuOpen ? 'auto' : 0,
+      opacity: isMobileMenuOpen ? 1 : 0,
+      overflow: isMobileMenuOpen ? 'visible' : 'hidden',
+    }}
+    transition={{ duration: 0.4, ease: 'easeInOut' }}
+    className="md:hidden flex flex-col gap-4 px-2 mt-4 bg-gradient-to-r from-purple-900 via-blue-800 to-black text-white"
+  >
+    <a href="#profile" className="hover:text-pink-400" onClick={() => setIsMobileMenuOpen(false)}>My Profile</a>
+    <a href="#about" className="hover:text-yellow-300" onClick={() => setIsMobileMenuOpen(false)}>About Me</a>
+    <a href="#experience" className="hover:text-green-300" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
+    <a href="#certifications" className="hover:text-purple-300" onClick={() => setIsMobileMenuOpen(false)}>Achivements</a>
+    <a href="#contact" className="hover:text-blue-300" onClick={() => setIsMobileMenuOpen(false)}>Contact Me</a>
+    <a href={resume} download className="text-cyan-300 hover:text-cyan-100" onClick={() => setIsMobileMenuOpen(false)}>Download Resume</a>
+  </motion.div>
 </nav>
 
                 <Toaster position="top-right" reverseOrder={false} />
@@ -263,7 +275,10 @@ function App() {
         </motion.div>
     </section>
                           <section id="certifications" >
-                        <EnhancedCertificateSlider />
+                        <EnhancedCertificateSlider 
+  selectedCert={selectedCert} 
+  setSelectedCert={setSelectedCert} 
+/>
       </section>
                 <section id="contact" className="min-h-screen bg-gradient-to-tl from-purple-100 via-white to-cyan-100 text-black py-20 px-4 relative overflow-hidden">
                     <Canvas className="absolute top-0 left-0 w-full h-full -z-10">
@@ -391,11 +406,12 @@ function App() {
                     </motion.div>
                 </section>
                  <VoiceAssistant
-        formData={formData}
-        setFormData={setFormData}
-        handleSubmit={handleSubmit}
-        resume={resume}
-      />
+  formData={formData}
+  setFormData={setFormData}
+  handleSubmit={handleSubmit}
+  resume="/assets/CV_Abhay.pdf"
+  setSelectedCert={setSelectedCert}
+/>
       <VoiceTipsModal />  
             </div>
         );

@@ -63,9 +63,8 @@ function Certificate3D({ position, rotation, scale, certificate, onClick }) {
     </Float>
   );
 }
-export default function EnhancedCertificateSlider() {
+export default function EnhancedCertificateSlider({selectedCert, setSelectedCert}) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedCert, setSelectedCert] = useState(null);
   const sliderRef = useRef();
     const [sidePadding, setSidePadding] = useState(0);
 useEffect(() => {

@@ -11,9 +11,10 @@ interface Props {
   setFormData: React.Dispatch<React.SetStateAction<any>>;
   handleSubmit: (e: React.FormEvent<HTMLFormElement> | { preventDefault: () => void }) => void;
   resume: string;
+  setSelectedCert: React.Dispatch<React.SetStateAction<string | null>>; // ✅ add this
 }
 
-const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, resume }) => {
+const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, resume, setSelectedCert}) => {
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
   // Voice commands logic
@@ -32,7 +33,7 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
       document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
       resetTranscript();
     }
-    if (text.includes("go to certificates")) {
+    if (text.includes("go to certificates") || text.includes("my achivements")) {
       document.getElementById("certifications")?.scrollIntoView({ behavior: "smooth" });
       resetTranscript();
     }
@@ -40,6 +41,16 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
       document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
       resetTranscript();
     }
+
+    if (text.includes("open web certificate")) {
+  setSelectedCert("/certificates/web_dev_full.jpg");
+  resetTranscript();
+}
+
+if (text.includes("open tata certificate")) {
+  setSelectedCert("/certificates/genai_full.jpg");
+  resetTranscript();
+}
 
     const nameMatch = text.match(/my name is ([a-z]+(?: [a-z]+)+)/i);
     if (nameMatch) {
@@ -80,9 +91,8 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
       document.body.removeChild(link);
       resetTranscript();
     }
-  }, [transcript, resetTranscript, setFormData, handleSubmit, resume]);
+  }, [transcript, resetTranscript, setFormData, handleSubmit, resume, setSelectedCert]);
 
-  // 🔴 Avoid using auto-start mic due to browser restrictions.
   const handleMicClick = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
