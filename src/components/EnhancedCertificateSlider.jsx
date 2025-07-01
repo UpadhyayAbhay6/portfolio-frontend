@@ -236,13 +236,13 @@ useEffect(() => {
                   </div>
                   
                   <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center relative">
-                    <div className="text-6xl opacity-30"></div>
+                    <div className="text-6xl opacity-30">🏆</div>
                    
-                    {<img 
+                    {/* {<img 
                       src={cert.thumbnail} 
                       alt={cert.title}
                       className="w-full h-full object-cover"
-                    />}
+                    />} */}
                   </div>
                   
                   <div className="p-6 text-center">
