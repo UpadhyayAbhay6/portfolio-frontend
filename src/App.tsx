@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber';
     import EnhancedCertificateSlider from './components/EnhancedCertificateSlider';
     import CertificateCard from './components/CertificateCard';
 import CertificateModal from './components/CertificateModal';
-    import profileImg2 from './assets/profile2.jpg';
+    import profileImg2 from './assets/profile1.jpg';
     import resume from './assets/CV_Abhay.pdf';
     import { Toaster, toast } from 'react-hot-toast';
     import VoiceAssistant from './components/VoiceAssistant';
