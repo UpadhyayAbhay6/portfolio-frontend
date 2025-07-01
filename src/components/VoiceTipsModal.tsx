@@ -61,9 +61,8 @@ const VoiceTipsModal = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed top-16 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
+    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
       <div className="relative">
-        {/* Close button - smaller and less intrusive */}
         <motion.button
           onClick={() => setIsVisible(false)}
           whileHover={{ scale: 1.1, rotate: 90 }}
