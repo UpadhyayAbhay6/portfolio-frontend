@@ -13,6 +13,7 @@ const VoiceTipsModal = () => {
     { text: "Say: 'contact me'", color: "text-purple-400" },
     { text: "Say: 'open web certificate'", color: "text-blue-400" },
     { text: "Say: 'open tata certificate'", color: "text-orange-400" },
+    { text: "Say: 'open geeks certificate'", color: "text-purple-400" },
     { text: "Say: 'My name is __'", color: "text-pink-400" },
     { text: "Say: 'My phone number is __'", color: "text-blue-400" },
     { text: "Say: 'My email is __'", color: "text-green-400" },
