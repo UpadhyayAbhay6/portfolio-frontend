@@ -105,7 +105,14 @@ useEffect(() => {
       thumbnail: '/certificates/genai_thumb.jpg',
       full: '/certificates/genai_full.jpg'
     },
-    
+     {
+      id: 3,
+     title: "Data Analytics GeeksForGeeks Certificate",
+      issuer: "GeeksForGeeks",
+      category: "Data Analytics",
+      thumbnail: '/certificates/genai_thumb.jpg',
+      full: '/certificates/GFG_DA_CERTIFICATE.png'
+    },
   ];
   useEffect(() => {
     const interval = setInterval(() => {

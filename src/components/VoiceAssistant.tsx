@@ -51,6 +51,10 @@ if (text.includes("open tata certificate")) {
   setSelectedCert("/certificates/genai_full.jpg");
   resetTranscript();
 }
+if (text.includes("open geeks certificate")) {
+  setSelectedCert("/certificates/GFG_DA_CERTIFICATE.png");
+  resetTranscript();
+}
 
     const nameMatch = text.match(/my name is ([a-z]+(?: [a-z]+)+)/i);
     if (nameMatch) {

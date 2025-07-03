@@ -8,6 +8,7 @@ import { Canvas } from '@react-three/fiber';
 import CertificateModal from './components/CertificateModal';
     import profileImg2 from './assets/profile1.jpg';
     import resume from './assets/CV_Abhay.pdf';
+    import FindMeSection from './components/FindMeSection';
     import { Toaster, toast } from 'react-hot-toast';
     import VoiceAssistant from './components/VoiceAssistant';
     import VoiceTipsModal from './components/VoiceTipsModal';
@@ -225,31 +226,54 @@ function App() {
                     </div>
                 </section>
 
-                <section id="about" className="min-h-screen bg-gradient-to-r from-yellow-100 via-pink-100 to-blue-100 text-black py-20 px-4">
-                    <motion.div
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h2 className="text-4xl font-bold mb-6 text-blue-800">About Me</h2>
-                        <p className="mb-4 text-lg">I'm a skilled Frontend Developer with professional experience, currently enhancing my expertise by learning Data Analysis to better understand and serve user needs. skilled in:</p>
-                        <ul className="list-disc pl-6 text-lg grid grid-cols-2 gap-3 text-purple-900">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JavaScript</li>
-                            <li>React</li>
-                            <li>TypeScript</li>
-                            <li>Node.js</li>
-                            <li>MySQL</li>
-                            <li>Data Analyst</li>
-                            <li>Excel Formulas</li>
-                            <li>Python For Data Analyst (Pandas, Numpy, Seaborn, plotlib)</li>
-                            <li>Data Visulization</li>
-                            <li>MySQL</li>
-                            <li>Power BI</li>
-                        </ul>
-                    </motion.div>
-                </section>
+              <section id="about" className="min-h-screen bg-gradient-to-r from-yellow-100 via-pink-100 to-blue-100 text-black py-20 px-4">
+  <motion.div
+    initial={{ opacity: 0, x: -100 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    <h2 className="text-4xl font-bold mb-6 text-blue-800 text-center">About Me</h2>
+    <p className="mb-8 text-lg text-center">
+      I'm a skilled <strong>Frontend Developer</strong> with professional experience, currently enhancing my expertise by learning <strong>Data Analysis</strong> to better understand and serve user needs.
+    </p>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-purple-900 text-lg">
+      {/* Frontend Column */}
+      <div>
+        <h3 className="text-xl font-bold mb-2 text-blue-700">Frontend</h3>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React.js</li>
+        </ul>
+      </div>
+      <div>
+        <h3 className="text-xl font-bold mb-2 text-pink-700">Data Analytics</h3>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Python For Data Analyst (Pandas, Numpy, Seaborn, plotlib)</li>
+          <li>Excel Formulas</li>
+          <li>Data Visualization</li>
+          <li>Power BI</li>
+          <li>MySQL</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-xl font-bold mb-2 text-yellow-700">Tools & Backend</h3>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Github</li>
+          <li>VS Code</li>
+          <li>Jupyter Notebook</li>
+          <li>Power BI</li>
+          <li>Postman</li>
+        </ul>
+      </div>
+    </div>
+  </motion.div>
+</section>
+
 
                 <section id="experience" className="min-h-screen bg-gradient-to-br from-green-200 via-white to-yellow-100 text-black py-20 px-4">
         <motion.div
@@ -405,6 +429,7 @@ function App() {
 
                     </motion.div>
                 </section>
+                <FindMeSection />
                  <VoiceAssistant
   formData={formData}
   setFormData={setFormData}
