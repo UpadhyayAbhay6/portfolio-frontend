@@ -58,8 +58,7 @@ const LinkedInIcon = ({ className, ...props }) => (
 // Main Find Me Section
 const FindMeSection = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-20 px-4 relative overflow-hidden">
-      {/* 3D Canvas Background */}
+    <section id="connectMe" className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-20 px-4 relative overflow-hidden">
       <Canvas
         className="absolute top-0 left-0 w-full h-full -z-10"
         camera={{ position: [0, 0, 8], fov: 50 }}

@@ -41,6 +41,10 @@ const VoiceAssistant: React.FC<Props> = ({ formData, setFormData, handleSubmit, 
       document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
       resetTranscript();
     }
+    if (text.includes("connect with me")) {
+      document.getElementById("connectMe")?.scrollIntoView({ behavior: "smooth" });
+      resetTranscript();
+    }
 
     if (text.includes("open web certificate")) {
   setSelectedCert("/certificates/web_dev_full.jpg");

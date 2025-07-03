@@ -108,6 +108,7 @@ function App() {
       <a href="#experience" className="hover:text-green-300">Experience</a>
       <a href="#certifications" className="hover:text-purple-300">Achivements</a>
       <a href="#contact" className="hover:text-blue-300">Contact Me</a>
+      <a href="#connectMe" className="hover:text-green-300">ConnectWithMe</a>
       <a href={resume} download className="text-cyan-300 hover:text-cyan-100">Download Resume</a>
     </div>
 
@@ -143,6 +144,7 @@ function App() {
     <a href="#experience" className="hover:text-green-300" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
     <a href="#certifications" className="hover:text-purple-300" onClick={() => setIsMobileMenuOpen(false)}>Achivements</a>
     <a href="#contact" className="hover:text-blue-300" onClick={() => setIsMobileMenuOpen(false)}>Contact Me</a>
+    <a href="#connectMe" className="hover:text-green-300" onClick={() => setIsMobileMenuOpen(false)}>ConnectWithMe</a>
     <a href={resume} download className="text-cyan-300 hover:text-cyan-100" onClick={() => setIsMobileMenuOpen(false)}>Download Resume</a>
   </motion.div>
 </nav>
