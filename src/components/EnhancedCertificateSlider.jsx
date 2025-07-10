@@ -113,6 +113,22 @@ useEffect(() => {
       thumbnail: '/certificates/genai_thumb.jpg',
       full: '/certificates/GFG_DA_CERTIFICATE.png'
     },
+     {
+      id: 4,
+     title: "Data Analytics IBM Certificate",
+      issuer: "IBM",
+      category: "Data Analytics",
+      thumbnail: '/certificates/genai_thumb.jpg',
+      full: '/certificates/DA_python.png'
+    },
+     {
+      id: 5,
+     title: "Python IBM Certificate",
+      issuer: "IBM",
+      category: "Python for Data Science",
+      thumbnail: '/certificates/genai_thumb.jpg',
+      full: '/certificates/IBM_python.png'
+    },
   ];
   useEffect(() => {
     const interval = setInterval(() => {
